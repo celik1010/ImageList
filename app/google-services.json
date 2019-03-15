@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "244065072408",
+    "firebase_url": "https://imagelistview-b908d.firebaseio.com",
+    "project_id": "imagelistview-b908d",
+    "storage_bucket": "imagelistview-b908d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244065072408:android:3aae4ac1cd8102f9",
+        "android_client_info": {
+          "package_name": "com.example.selimelik.imagelist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "244065072408-vq8oa6dc800b7mk6rovs27gjmnpodakv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.selimelik.imagelist",
+            "certificate_hash": "8f0585180923ee37c581bb65ff7b86f1289795e4"
+          }
+        },
+        {
+          "client_id": "244065072408-1854q1p548inf3asgsg2d7r6k47hn3pi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEdHL3iZWVbMzzt9HLvwJEXCTFk3cZU2I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "244065072408-1854q1p548inf3asgsg2d7r6k47hn3pi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
