@@ -1,6 +1,6 @@
 package com.example.selimelik.imagelist;
 
-import android.content.Intent;;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -81,8 +81,8 @@ public class ImageListActivity extends AppCompatActivity {
         intent1.putExtra("placeName","dename");
         startActivity(intent1);
 */
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        mTextMessage =  findViewById(R.id.message);
+        BottomNavigationView navigation =  findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
