@@ -109,7 +109,7 @@ public class ImageListActivity extends AppCompatActivity {
                     userIdfromFB.add(hashMap.get("USER_ID"));
                     placeIdfromFB.add(hashMap.get("PLACE_ID"));
                     imagePathfromFB.add(hashMap.get("IMAGE_PATH"));
-                    postTime.add(hashMap.get("POSTTIME"));
+                    postTime.add(hashMap.get("POSTTIME")); 
                     adapter.notifyDataSetChanged();
                 }
             }
