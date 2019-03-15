@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SaveCommentImage" />
-        <activity android:name=".SelectPalce"></activity>
+        <activity android:name=".SelectPlace"></activity>
     </application>
 
 </manifest>

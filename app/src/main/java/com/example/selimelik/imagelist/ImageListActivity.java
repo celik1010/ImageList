@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -43,7 +42,7 @@ public class ImageListActivity extends AppCompatActivity {
                     mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_dashboard:
-                    Intent intent= new Intent(getApplicationContext(),SelectPalce.class);
+                    Intent intent= new Intent(getApplicationContext(),SelectPlace.class);
                     startActivity(intent);
                     return true;
                 case R.id.navigation_notifications:
@@ -109,7 +108,7 @@ public class ImageListActivity extends AppCompatActivity {
                     userIdfromFB.add(hashMap.get("USER_ID"));
                     placeIdfromFB.add(hashMap.get("PLACE_ID"));
                     imagePathfromFB.add(hashMap.get("IMAGE_PATH"));
-                    postTime.add(hashMap.get("POSTTIME")); 
+                    postTime.add(hashMap.get("POSTTIME"));
                     adapter.notifyDataSetChanged();
                 }
             }

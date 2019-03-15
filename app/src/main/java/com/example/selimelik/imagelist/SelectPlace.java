@@ -36,7 +36,7 @@ import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class SelectPalce extends AppCompatActivity {
+public class SelectPlace extends AppCompatActivity {
     String enlem, boylam;
     String placesJSON;
     List<String> placeList;
