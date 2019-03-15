@@ -106,7 +106,7 @@ public class ImageListActivity extends AppCompatActivity {
                  //   hashMap.get("FBV USER_ID :" + hashMap.get("USER_ID"));
                  //  hashMap.get("FBV IMAGE_PATH :" + hashMap.get("IMAGE_PATH"));
 
-                    userIdfromFB.add(hashMap.get("USER_ID"));
+                    userIdfromFB.add(hashMap.get("USER_ID")); 
                     placeIdfromFB.add(hashMap.get("PLACE_ID"));
                     imagePathfromFB.add(hashMap.get("IMAGE_PATH"));
                     postTime.add(hashMap.get("POSTTIME"));
