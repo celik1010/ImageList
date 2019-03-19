@@ -88,6 +88,10 @@
         "source": "C:\\Users\\Selim Çelik\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\e16968e52e9162868d31a9087129ed6c\\res\\color\\mtrl_btn_bg_color_selector.xml"
     },
     {
+        "merged": "C:\\AndroidProjects\\ImageList\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_sign_up.xml.flat",
+        "source": "C:\\AndroidProjects\\ImageList\\app\\src\\main\\res\\layout\\activity_sign_up.xml"
+    },
+    {
         "merged": "C:\\AndroidProjects\\ImageList\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_seekbar_track_material.xml.flat",
         "source": "C:\\Users\\Selim Çelik\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\ec4b21de52829e63788add087b84e0f0\\res\\drawable\\abc_seekbar_track_material.xml"
     },
@@ -516,6 +520,10 @@
         "source": "C:\\Users\\Selim Çelik\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\ec4b21de52829e63788add087b84e0f0\\res\\drawable-xxhdpi-v4\\abc_btn_radio_to_on_mtrl_000.png"
     },
     {
+        "merged": "C:\\AndroidProjects\\ImageList\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
+        "source": "C:\\AndroidProjects\\ImageList\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
         "merged": "C:\\AndroidProjects\\ImageList\\app\\build\\intermediates\\res\\merged\\debug\\layout_design_navigation_item_separator.xml.flat",
         "source": "C:\\Users\\Selim Çelik\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\e16968e52e9162868d31a9087129ed6c\\res\\layout\\design_navigation_item_separator.xml"
     },
@@ -642,6 +650,10 @@
     {
         "merged": "C:\\AndroidProjects\\ImageList\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_part_chronometer.xml.flat",
         "source": "C:\\Users\\Selim Çelik\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\785bb22fa0fb7316bd4b054644ac78ac\\res\\layout\\notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "C:\\AndroidProjects\\ImageList\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_select_place.xml.flat",
+        "source": "C:\\AndroidProjects\\ImageList\\app\\src\\main\\res\\layout\\activity_select_place.xml"
     },
     {
         "merged": "C:\\AndroidProjects\\ImageList\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_list_pressed_holo_light.9.png.flat",
@@ -1438,10 +1450,6 @@
     {
         "merged": "C:\\AndroidProjects\\ImageList\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_star_half_black_48dp.png.flat",
         "source": "C:\\Users\\Selim Çelik\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\ec4b21de52829e63788add087b84e0f0\\res\\drawable-mdpi-v4\\abc_ic_star_half_black_48dp.png"
-    },
-    {
-        "merged": "C:\\AndroidProjects\\ImageList\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_select_palce.xml.flat",
-        "source": "C:\\AndroidProjects\\ImageList\\app\\src\\main\\res\\layout\\activity_select_palce.xml"
     },
     {
         "merged": "C:\\AndroidProjects\\ImageList\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_low_normal.9.png.flat",

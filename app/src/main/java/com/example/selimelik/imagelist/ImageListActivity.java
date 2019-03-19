@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.selimelik.imagelist.adapters.PostAdapter;
+import com.example.selimelik.imagelist.pojos.Post;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -17,20 +19,15 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
 public class ImageListActivity extends AppCompatActivity {
-
+    private static ImageListActivity imageListActivity;
+    public static final String POSTSTABLENAME = "POSTS";
     private TextView mTextMessage;
     ListView listView;
-    PostClass adapter;
+    PostAdapter adapter;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference myRef;
-    ArrayList<String> userIdfromFB;
-    ArrayList<String> placeIdfromFB;
-    ArrayList<String> imagePathfromFB;
-    ArrayList<String> uuidString;
-    ArrayList<String> postTime;
+    ArrayList<Post> postsFromFB;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -61,16 +58,12 @@ public class ImageListActivity extends AppCompatActivity {
 
 
         listView = findViewById(R.id.listView);
-        userIdfromFB = new ArrayList<>();
-        placeIdfromFB = new ArrayList<>();
-        imagePathfromFB = new ArrayList<>();
-        postTime = new ArrayList<>();
-        uuidString = new ArrayList<>();
+        postsFromFB =new ArrayList<>();
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         myRef = firebaseDatabase.getReference();
 
-        adapter = new PostClass(placeIdfromFB,userIdfromFB,imagePathfromFB,uuidString,postTime,this);
+        adapter = new PostAdapter(this,postsFromFB);
         listView.setAdapter(adapter);
 
         getDataFromFirebase();
@@ -86,8 +79,8 @@ public class ImageListActivity extends AppCompatActivity {
     }
 
     public void getDataFromFirebase(){
-        DatabaseReference newReference = firebaseDatabase.getReference("POSTS/IMAGEPATHS");
-        Query query = newReference.orderByChild("USER_ID").startAt("slm").endAt("slm\uf8ff").limitToFirst(10);
+        DatabaseReference newReference = firebaseDatabase.getReference(ImageListActivity.POSTSTABLENAME);
+        Query query = newReference.orderByChild("username").startAt("slm").endAt("slm\uf8ff").limitToFirst(10);
 
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -98,19 +91,11 @@ public class ImageListActivity extends AppCompatActivity {
                //   System.out.println("FBV priority :" +dataSnapshot.getPriority());
 
                 for (DataSnapshot ds : dataSnapshot.getChildren()){
-                  //  System.out.println("FBV DS VALUE : "+ds.getValue());
-
-                    HashMap<String,String> hashMap = (HashMap<String, String>) ds.getValue();
-                 //   hashMap.get("FBV PlaceID :" + hashMap.get("PLACE_ID"));
-                 //   hashMap.get("FBV USER_ID :" + hashMap.get("USER_ID"));
-                 //  hashMap.get("FBV IMAGE_PATH :" + hashMap.get("IMAGE_PATH"));
-
-                    userIdfromFB.add(hashMap.get("USER_ID"));
-                    placeIdfromFB.add(hashMap.get("PLACE_ID"));
-                    imagePathfromFB.add(hashMap.get("IMAGE_PATH"));
-                    postTime.add(hashMap.get("POSTTIME"));
-                    adapter.notifyDataSetChanged();
+                     Post post = ds.getValue(Post.class);
+                     postsFromFB.add(post);
                 }
+                adapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -119,5 +104,9 @@ public class ImageListActivity extends AppCompatActivity {
             }
         });
     }
-
+public static ImageListActivity getInstance(){
+        if (imageListActivity==null)
+            imageListActivity = new ImageListActivity();
+        return imageListActivity;
+}
 }

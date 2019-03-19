@@ -37,6 +37,7 @@ import java.util.List;
 import javax.net.ssl.HttpsURLConnection;
 
 public class SelectPlace extends AppCompatActivity {
+    ArrayAdapter<String> placesAdapter;
     String enlem, boylam;
     String placesJSON;
     List<String> placeList;
@@ -53,7 +54,7 @@ public class SelectPlace extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_palce);
+        setContentView(R.layout.activity_select_place);
 
         //   txtLong = findViewById(R.id.txtlongitude);
         //   txtLang = findViewById(R.id.txtlatitude);
@@ -143,9 +144,10 @@ public class SelectPlace extends AppCompatActivity {
         try {
             getPlacesData.execute(url);
             getPlacesData.onPostExecute(placesJSON);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, android.R.id.text1, placeList);
-            lstPlaceList.setAdapter(adapter);
-            System.out.println("asas:" + placeList);
+            placesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, android.R.id.text1, placeList);
+            lstPlaceList.setAdapter(placesAdapter);
+            lstPlaceList.refreshDrawableState();
+
         } catch (Exception e) {
 
         }
@@ -209,7 +211,6 @@ public class SelectPlace extends AppCompatActivity {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                     placeList.add(jsonObject1.getString("name"));
                 }
-                System.out.println("asasa :" + placeList);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

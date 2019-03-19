@@ -20,9 +20,13 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ServerValue;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -31,10 +35,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.UUID;
 
 public class SaveCommentImage extends AppCompatActivity {
 
+    String mUsernameEmail;
+    String mUsername;
     Uri selectedImageUri;
     byte[] imageDatas;
     ImageView imageView;
@@ -50,18 +57,52 @@ public class SaveCommentImage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save_comment_image);
+
+        mUsernameEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        getUserName(mUsernameEmail);
         commentText = findViewById(R.id.commmentTxt);
+        commentText.setText(mUsername);
+
+
         placeNameTxt = findViewById(R.id.txtPlaceName);
         imageView = findViewById(R.id.imageView);
         imageViewCamera = findViewById(R.id.imageViewCamera);
         placeNameTxt.setText(getIntent().getExtras().getString("placeName"));
 
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        myRef = firebaseDatabase.getReference();
+
+
+
+
+
+
+
+
 
         mAuth = FirebaseAuth.getInstance();
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
+    }
+
+    private void getUserName(String mUsernameEmail) {
+
+        myRef = firebaseDatabase.getReference();
+        Query query = myRef.child("USERS").orderByChild("email").startAt(mUsernameEmail).endAt(mUsernameEmail+"\uf8ff").limitToFirst(10);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds:dataSnapshot.getChildren()){
+                    HashMap<String,String> hashMap = (HashMap<String, String>) ds.getValue();
+                    mUsername= hashMap.get("username");
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void uploadImage(View view) {
@@ -81,18 +122,18 @@ public class SaveCommentImage extends AppCompatActivity {
                         public void onSuccess(Uri uri) {
                             Toast.makeText(getApplicationContext(), "URI : " + uri.toString(), Toast.LENGTH_LONG).show();
                             String place_id = uuid.toString();
-                            String user_id = "slmcelik@yandex.com";
                             String image_path = uri.toString();
                             Date date = new Date();
                             SimpleDateFormat date_format = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
                             String current_time = date_format.format(date);
                             String uuidString = uuid.toString();
-
-                            myRef.child("POSTS").child("IMAGEPATHS").child(uuidString).child("PLACE_ID").setValue(place_id);
-                            myRef.child("POSTS").child("IMAGEPATHS").child(uuidString).child("USER_ID").setValue(user_id);
-                            myRef.child("POSTS").child("IMAGEPATHS").child(uuidString).child("IMAGE_PATH").setValue(image_path);
-                            myRef.child("POSTS").child("IMAGEPATHS").child(uuidString).child("POSTTIME").setValue(current_time);
-                            myRef.child("POSTS").child("IMAGEPATHS").child(uuidString).child("TIMESTAMP").setValue(-1 * new Date().getTime());
+                            long timestamp = -1 * date.getTime();
+                            myRef = firebaseDatabase.getReference();
+                            myRef.child(ImageListActivity.POSTSTABLENAME).child(uuidString).child("place_id").setValue(place_id);
+                            myRef.child("POSTS").child(uuidString).child("username").setValue(mUsername);
+                            myRef.child("POSTS").child(uuidString).child("image_path").setValue(image_path);
+                            myRef.child("POSTS").child(uuidString).child("postdate").setValue(current_time);
+                            myRef.child("POSTS").child(uuidString).child("timestamp").setValue(timestamp);
 
                             Intent intent = new Intent(getApplicationContext(), ImageListActivity.class);
                             startActivity(intent);
@@ -124,18 +165,18 @@ public class SaveCommentImage extends AppCompatActivity {
                                 public void onSuccess(Uri uri) {
                                     Toast.makeText(getApplicationContext(), "URI : " + uri.toString(), Toast.LENGTH_LONG).show();
                                     String place_id = uuid.toString();
-                                    String user_id = "slmcelik@yandex.com";
                                     String image_path = uri.toString();
                                     Date date = new Date();
                                     SimpleDateFormat date_format = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
                                     String current_time = date_format.format(date);
                                     String uuidString = uuid.toString();
-
-                                    myRef.child("POSTS").child("IMAGEPATHS").child(uuidString).child("PLACE_ID").setValue(place_id);
-                                    myRef.child("POSTS").child("IMAGEPATHS").child(uuidString).child("USER_ID").setValue(user_id);
-                                    myRef.child("POSTS").child("IMAGEPATHS").child(uuidString).child("IMAGE_PATH").setValue(image_path);
-                                    myRef.child("POSTS").child("IMAGEPATHS").child(uuidString).child("POSTTIME").setValue(current_time);
-                                    myRef.child("POSTS").child("IMAGEPATHS").child(uuidString).child("TIMESTAMP").setValue(-1 * new Date().getTime());
+                                    long timestamp = -1 * date.getTime();
+                                    myRef = firebaseDatabase.getReference();
+                                    myRef.child(ImageListActivity.POSTSTABLENAME).child(uuidString).child("place_id").setValue(place_id);
+                                    myRef.child("POSTS").child(uuidString).child("username").setValue(mUsername);
+                                    myRef.child("POSTS").child(uuidString).child("image_path").setValue(image_path);
+                                    myRef.child("POSTS").child(uuidString).child("postdate").setValue(current_time);
+                                    myRef.child("POSTS").child(uuidString).child("timestamp").setValue(timestamp);
 
                                     Intent intent = new Intent(getApplicationContext(), ImageListActivity.class);
                                     startActivity(intent);
