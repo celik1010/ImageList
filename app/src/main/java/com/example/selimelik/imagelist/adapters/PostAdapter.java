@@ -63,7 +63,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
         }
 
 
-        txtUserId.setText(posts.get(position).getPlace_id());
+        txtUserId.setText(posts.get(position).getUsername());
         txtPostTime.setText(posts.get(position).getPostdate());
         Picasso.get().load(posts.get(position).getImage_path()).into(imageView);
 

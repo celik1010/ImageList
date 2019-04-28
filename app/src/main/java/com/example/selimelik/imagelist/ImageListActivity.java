@@ -79,8 +79,9 @@ public class ImageListActivity extends AppCompatActivity {
     }
 
     public void getDataFromFirebase(){
-        DatabaseReference newReference = firebaseDatabase.getReference(ImageListActivity.POSTSTABLENAME);
-        Query query = newReference.orderByChild("username").startAt("slm").endAt("slm\uf8ff").limitToFirst(10);
+        DatabaseReference newReference = firebaseDatabase.getReference("POSTS");
+     //   Query query = newReference.orderByChild("username").startAt("cel").endAt("cel\uf8ff").limitToFirst(10);
+        Query query = newReference.orderByChild("timestamp").limitToFirst(10);
 
         query.addValueEventListener(new ValueEventListener() {
             @Override
