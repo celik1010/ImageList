@@ -22,6 +22,8 @@ import java.util.ArrayList;
 public class ImageListActivity extends AppCompatActivity {
     private static ImageListActivity imageListActivity;
     public static final String POSTSTABLENAME = "POSTS";
+    public static final String LIKESTABLENAME = "LIKES";
+    public static final String DISLIKESTABLENAME = "DISLIKES";
     private TextView mTextMessage;
     ListView listView;
     PostAdapter adapter;
@@ -93,7 +95,9 @@ public class ImageListActivity extends AppCompatActivity {
 
                 for (DataSnapshot ds : dataSnapshot.getChildren()){
                      Post post = ds.getValue(Post.class);
+                     post.setPost_id(ds.getKey());
                      postsFromFB.add(post);
+
                 }
                 adapter.notifyDataSetChanged();
 

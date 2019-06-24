@@ -214,11 +214,8 @@ public class SelectPlace extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
             super.onPostExecute(s);
         }
-
-
     }
 
     private String getCityName(double pLati, double pLong) {
