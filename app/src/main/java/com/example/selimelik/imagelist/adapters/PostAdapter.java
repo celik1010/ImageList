@@ -19,6 +19,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
@@ -104,15 +105,23 @@ public class PostAdapter extends ArrayAdapter<Post> {
     }
 
     public void calculateLikeDislikeRates(String postId){
+        DatabaseReference newReference = firebaseDatabase.getReference("LIKES");
+        //   Query query = newReference.orderByChild("username").startAt("cel").endAt("cel\uf8ff").limitToFirst(10);
+        Query query = newReference.orderByChild("postId").startAt(postId).endAt(postId+"\uf8ff");
 
-        myRef = FirebaseDatabase.getInstance().getReference("LIKES").child(postId);
-        myRef.addValueEventListener(new ValueEventListener() {
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                sumDislike = 0;
+                // System.out.println("FBV Children :" +dataSnapshot.getChildren());
+                //  System.out.println("FBV key :" +dataSnapshot.getKey());
+                //   System.out.println("FBV value :" +dataSnapshot.getValue());
+                //   System.out.println("FBV priority :" +dataSnapshot.getPriority());
+                sumLike = 0;
                 for (DataSnapshot ds : dataSnapshot.getChildren()){
-                  sumLike +=1;
+                    System.out.println("aaaaSs:"+ds.getValue());
+                    sumLike +=1;
                 }
+                System.out.println("aaaaSs Tot:"+sumLike);
             }
 
             @Override
@@ -120,14 +129,19 @@ public class PostAdapter extends ArrayAdapter<Post> {
 
             }
         });
-        myRef = FirebaseDatabase.getInstance().getReference("DISLIKES").child(postId);
-        myRef.addValueEventListener(new ValueEventListener() {
+        DatabaseReference newReferenceDis = firebaseDatabase.getReference("DISLIKES");
+        //   Query query = newReference.orderByChild("username").startAt("cel").endAt("cel\uf8ff").limitToFirst(10);
+        Query queryDis = newReferenceDis.orderByChild("postId").startAt(postId).endAt(postId+"\uf8ff");
+
+        queryDis.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 sumDislike = 0;
                 for (DataSnapshot ds : dataSnapshot.getChildren()){
+                    System.out.println("aaaaSs:"+ds.getKey());
                     sumDislike +=1;
                 }
+                System.out.println("aaaaSs TotDis:"+sumDislike);
             }
 
             @Override
@@ -136,7 +150,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
             }
         });
 
-        float percent;
+       /* float percent;
         if ((sumLike+sumDislike) != 0) {
             percent = (1 * sumDislike) / (sumLike + sumDislike);
         }else{
@@ -147,6 +161,6 @@ public class PostAdapter extends ArrayAdapter<Post> {
         btnDislike.setLayoutParams(params);
         percent = 1 - percent;
         params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, percent);
-        btnLike.setLayoutParams(params);
+        btnLike.setLayoutParams(params);*/
     }
 }
