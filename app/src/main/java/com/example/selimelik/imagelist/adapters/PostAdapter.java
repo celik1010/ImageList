@@ -35,8 +35,8 @@ public class PostAdapter extends ArrayAdapter<Post> {
     UUID uuid = null;
     Button btnDislike;
     Button btnLike;
-    int sumDislike = 0;
-    int sumLike = 0;
+    int sumDislike;
+    int sumLike;
 
     public PostAdapter(Activity context, ArrayList<Post> posts) {
         super(context, R.layout.custom_view, posts);
@@ -61,20 +61,20 @@ public class PostAdapter extends ArrayAdapter<Post> {
         final String currUserId = posts.get(position).getUsername();
 
         {   //Like & Dislike Buttons
-             btnDislike = customView.findViewById(R.id.btnDislike);
-             btnLike = customView.findViewById(R.id.btnLike);
+            btnDislike = customView.findViewById(R.id.btnDislike);
+            btnLike = customView.findViewById(R.id.btnLike);
 
             calculateLikeDislikeRates(currPostId);
             btnDislike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    updateDislikeStatus(currPostId,currUserId);
+                    updateDislikeStatus(currPostId, currUserId);
                 }
             });
             btnLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    updateLikeStatus(currPostId,currUserId);
+                    updateLikeStatus(currPostId, currUserId);
                 }
             });
         }
@@ -96,6 +96,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
         myRef.child(ImageListActivity.DISLIKESTABLENAME).child(uuidString).child("postId").setValue(currPostId);
         myRef.child(ImageListActivity.DISLIKESTABLENAME).child(uuidString).child("userId").setValue(currUserId);
     }
+
     private void updateLikeStatus(String currPostId, String currUserId) {
         uuid = UUID.randomUUID();
         String uuidString = uuid.toString();
@@ -104,24 +105,20 @@ public class PostAdapter extends ArrayAdapter<Post> {
         myRef.child(ImageListActivity.LIKESTABLENAME).child(uuidString).child("userId").setValue(currUserId);
     }
 
-    public void calculateLikeDislikeRates(String postId){
+    public void calculateLikeDislikeRates(String postId) {
+        sumLike = 0;
+        sumDislike = 0;
         DatabaseReference newReference = firebaseDatabase.getReference("LIKES");
         //   Query query = newReference.orderByChild("username").startAt("cel").endAt("cel\uf8ff").limitToFirst(10);
-        Query query = newReference.orderByChild("postId").startAt(postId).endAt(postId+"\uf8ff");
+        Query query = newReference.orderByChild("postId").startAt(postId).endAt(postId + "\uf8ff");
 
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // System.out.println("FBV Children :" +dataSnapshot.getChildren());
-                //  System.out.println("FBV key :" +dataSnapshot.getKey());
-                //   System.out.println("FBV value :" +dataSnapshot.getValue());
-                //   System.out.println("FBV priority :" +dataSnapshot.getPriority());
-                sumLike = 0;
-                for (DataSnapshot ds : dataSnapshot.getChildren()){
-                    System.out.println("aaaaSs:"+ds.getValue());
-                    sumLike +=1;
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    sumLike += 1;
                 }
-                System.out.println("aaaaSs Tot:"+sumLike);
+                System.out.println("aaaaSs Tot:" + sumLike);
             }
 
             @Override
@@ -131,17 +128,16 @@ public class PostAdapter extends ArrayAdapter<Post> {
         });
         DatabaseReference newReferenceDis = firebaseDatabase.getReference("DISLIKES");
         //   Query query = newReference.orderByChild("username").startAt("cel").endAt("cel\uf8ff").limitToFirst(10);
-        Query queryDis = newReferenceDis.orderByChild("postId").startAt(postId).endAt(postId+"\uf8ff");
+        Query queryDis = newReferenceDis.orderByChild("postId").startAt(postId).endAt(postId + "\uf8ff");
 
         queryDis.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                sumDislike = 0;
-                for (DataSnapshot ds : dataSnapshot.getChildren()){
-                    System.out.println("aaaaSs:"+ds.getKey());
-                    sumDislike +=1;
+
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    sumDislike += 1;
                 }
-                System.out.println("aaaaSs TotDis:"+sumDislike);
+                System.out.println("aaaaSs TotDis:" + sumDislike);
             }
 
             @Override
@@ -149,11 +145,10 @@ public class PostAdapter extends ArrayAdapter<Post> {
 
             }
         });
-
-       /* float percent;
-        if ((sumLike+sumDislike) != 0) {
+        float percent;
+        if ((sumLike + sumDislike) != 0) {
             percent = (1 * sumDislike) / (sumLike + sumDislike);
-        }else{
+        } else {
             percent = (float) Math.random();
         }
 
@@ -161,6 +156,6 @@ public class PostAdapter extends ArrayAdapter<Post> {
         btnDislike.setLayoutParams(params);
         percent = 1 - percent;
         params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, percent);
-        btnLike.setLayoutParams(params);*/
+        btnLike.setLayoutParams(params);
     }
 }

@@ -40,6 +40,9 @@ public class ImageListActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     mTextMessage.setText(R.string.title_home);
                     return true;
+                case R.id.navigation_search:
+                    mTextMessage.setText("Ara");
+                    return true;
                 case R.id.navigation_dashboard:
                     Intent intent= new Intent(getApplicationContext(),SelectPlace.class);
                     startActivity(intent);
@@ -97,10 +100,8 @@ public class ImageListActivity extends AppCompatActivity {
                      Post post = ds.getValue(Post.class);
                      post.setPost_id(ds.getKey());
                      postsFromFB.add(post);
-
                 }
                 adapter.notifyDataSetChanged();
-
             }
 
             @Override

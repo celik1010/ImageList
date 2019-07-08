@@ -1057,6 +1057,7 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_notifications_black_24dp
+drawable ic_search_black_24dp
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
@@ -1209,6 +1210,7 @@ id navigation_dashboard
 id navigation_header_container
 id navigation_home
 id navigation_notifications
+id navigation_search
 id never
 id none
 id normal
