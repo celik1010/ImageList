@@ -58,7 +58,7 @@ public class SelectPlace extends AppCompatActivity {
 
         //   txtLong = findViewById(R.id.txtlongitude);
         //   txtLang = findViewById(R.id.txtlatitude);
-        edtPlaceName_ = findViewById(R.id.edtPlaceName);
+        edtPlaceName_ = findViewById(R.id.edtSearchText);
         lstPlaceList = findViewById(R.id.lstPlaces);
 
 

@@ -20,7 +20,6 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -129,13 +128,13 @@ public class SaveCommentImage extends AppCompatActivity {
                             String uuidString = uuid.toString();
                             long timestamp = -1 * date.getTime();
                             myRef = firebaseDatabase.getReference();
-                            myRef.child(ImageListActivity.POSTSTABLENAME).child(uuidString).child("place_id").setValue(place_id);
+                            myRef.child(ContainerActivity.POSTSTABLENAME).child(uuidString).child("place_id").setValue(place_id);
                             myRef.child("POSTS").child(uuidString).child("username").setValue(mUsername);
                             myRef.child("POSTS").child(uuidString).child("image_path").setValue(image_path);
                             myRef.child("POSTS").child(uuidString).child("postdate").setValue(current_time);
                             myRef.child("POSTS").child(uuidString).child("timestamp").setValue(timestamp);
 
-                            Intent intent = new Intent(getApplicationContext(), ImageListActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), ContainerActivity.class);
                             startActivity(intent);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -172,13 +171,13 @@ public class SaveCommentImage extends AppCompatActivity {
                                     String uuidString = uuid.toString();
                                     long timestamp = -1 * date.getTime();
                                     myRef = firebaseDatabase.getReference();
-                                    myRef.child(ImageListActivity.POSTSTABLENAME).child(uuidString).child("place_id").setValue(place_id);
+                                    myRef.child(ContainerActivity.POSTSTABLENAME).child(uuidString).child("place_id").setValue(place_id);
                                     myRef.child("POSTS").child(uuidString).child("username").setValue(mUsername);
                                     myRef.child("POSTS").child(uuidString).child("image_path").setValue(image_path);
                                     myRef.child("POSTS").child(uuidString).child("postdate").setValue(current_time);
                                     myRef.child("POSTS").child(uuidString).child("timestamp").setValue(timestamp);
 
-                                    Intent intent = new Intent(getApplicationContext(), ImageListActivity.class);
+                                    Intent intent = new Intent(getApplicationContext(), ContainerActivity.class);
                                     startActivity(intent);
                                 }
                             }).addOnFailureListener(new OnFailureListener() {

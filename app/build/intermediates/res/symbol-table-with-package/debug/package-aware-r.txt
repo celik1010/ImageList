@@ -1117,6 +1117,7 @@ id btnDislike
 id btnLike
 id button
 id button1
+id button2
 id buttonPanel
 id cancel_action
 id center
@@ -1146,8 +1147,9 @@ id design_navigation_view
 id dimensions
 id direct
 id disableHome
+id editText
 id edit_query
-id edtPlaceName
+id edtSearchText
 id email
 id email_login_form
 id email_sign_in_button
@@ -1196,6 +1198,7 @@ id list_item
 id login_form
 id login_progress
 id lstPlaces
+id mainPage
 id masked
 id media_actions
 id message
@@ -1277,6 +1280,7 @@ id status_bar_latest_event_content
 id stretch
 id submenuarrow
 id submit_area
+id tabLayout
 id tabMode
 id tag_transition_group
 id tag_unhandled_key_event_manager
@@ -1311,6 +1315,7 @@ id up
 id useLogo
 id userinfo
 id username
+id viewPagerContainer
 id view_offset_helper
 id visible
 id website
@@ -1386,6 +1391,10 @@ layout design_navigation_item_subheader
 layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
+layout fragment_main_page
+layout fragment_people
+layout fragment_places
+layout fragment_search_page
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout notification_action
@@ -1487,6 +1496,7 @@ string google_api_key
 string google_app_id
 string google_crash_reporting_api_key
 string google_storage_bucket
+string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
 string mtrl_chip_close_icon_content_description
 string password_toggle_content_description

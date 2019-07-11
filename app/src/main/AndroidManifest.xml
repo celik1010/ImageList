@@ -30,7 +30,7 @@
         </activity>
         <activity android:name=".SaveCommentImage" />
         <activity android:name=".SelectPlace" />
-        <activity android:name=".ImageListActivity" />
+        <activity android:name=".ContainerActivity" />
         <activity android:name=".SignUpActivity"></activity>
     </application>
 

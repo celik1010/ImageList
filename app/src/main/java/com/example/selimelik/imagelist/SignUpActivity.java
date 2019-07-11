@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -84,7 +83,7 @@ public class SignUpActivity extends AppCompatActivity {
                 myRef.child("USERS").child(user_id).child("gender").setValue(gender);
                 myRef.child("USERS").child(user_id).child("registerDate").setValue(current_time);
                 myRef.child("USERS").child(user_id).child("timestamp").setValue(-1 * new Date().getTime());
-                Intent intent = new Intent(getApplicationContext(), ImageListActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ContainerActivity.class);
                 startActivity(intent);
             }
         }).addOnFailureListener(new OnFailureListener() {

@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.selimelik.imagelist.ImageListActivity;
+import com.example.selimelik.imagelist.ContainerActivity;
 import com.example.selimelik.imagelist.R;
 import com.example.selimelik.imagelist.pojos.Post;
 import com.google.firebase.auth.FirebaseAuth;
@@ -93,16 +93,16 @@ public class PostAdapter extends ArrayAdapter<Post> {
         uuid = UUID.randomUUID();
         String uuidString = uuid.toString();
         myRef = firebaseDatabase.getReference();
-        myRef.child(ImageListActivity.DISLIKESTABLENAME).child(uuidString).child("postId").setValue(currPostId);
-        myRef.child(ImageListActivity.DISLIKESTABLENAME).child(uuidString).child("userId").setValue(currUserId);
+        myRef.child(ContainerActivity.DISLIKESTABLENAME).child(uuidString).child("postId").setValue(currPostId);
+        myRef.child(ContainerActivity.DISLIKESTABLENAME).child(uuidString).child("userId").setValue(currUserId);
     }
 
     private void updateLikeStatus(String currPostId, String currUserId) {
         uuid = UUID.randomUUID();
         String uuidString = uuid.toString();
         myRef = firebaseDatabase.getReference();
-        myRef.child(ImageListActivity.LIKESTABLENAME).child(uuidString).child("postId").setValue(currPostId);
-        myRef.child(ImageListActivity.LIKESTABLENAME).child(uuidString).child("userId").setValue(currUserId);
+        myRef.child(ContainerActivity.LIKESTABLENAME).child(uuidString).child("postId").setValue(currPostId);
+        myRef.child(ContainerActivity.LIKESTABLENAME).child(uuidString).child("userId").setValue(currUserId);
     }
 
     public void calculateLikeDislikeRates(String postId) {
