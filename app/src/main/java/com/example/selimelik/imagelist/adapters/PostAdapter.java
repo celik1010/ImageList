@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.selimelik.imagelist.ContainerActivity;
@@ -63,8 +62,8 @@ public class PostAdapter extends ArrayAdapter<Post> {
         {   //Like & Dislike Buttons
             btnDislike = customView.findViewById(R.id.btnDislike);
             btnLike = customView.findViewById(R.id.btnLike);
-
             calculateLikeDislikeRates(currPostId);
+
             btnDislike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -77,6 +76,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
                     updateLikeStatus(currPostId, currUserId);
                 }
             });
+
         }
 
 
@@ -118,7 +118,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     sumLike += 1;
                 }
-                System.out.println("aaaaSs Tot:" + sumLike);
+               btnLike.setText(""+sumLike);
             }
 
             @Override
@@ -137,7 +137,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     sumDislike += 1;
                 }
-                System.out.println("aaaaSs TotDis:" + sumDislike);
+                btnDislike.setText(""+sumDislike);
             }
 
             @Override
@@ -145,7 +145,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
 
             }
         });
-        float percent;
+       /* float percent;
         if ((sumLike + sumDislike) != 0) {
             percent = (1 * sumDislike) / (sumLike + sumDislike);
         } else {
@@ -156,6 +156,6 @@ public class PostAdapter extends ArrayAdapter<Post> {
         btnDislike.setLayoutParams(params);
         percent = 1 - percent;
         params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, percent);
-        btnLike.setLayoutParams(params);
+        btnLike.setLayoutParams(params);*/
     }
 }

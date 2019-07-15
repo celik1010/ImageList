@@ -24,6 +24,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.selimelik.imagelist.pojos.Place;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,6 +43,8 @@ public class SelectPlace extends AppCompatActivity {
     String enlem, boylam;
     String placesJSON;
     List<String> placeList;
+    List<Place> placeListObj;
+    Place place;
     ListView lstPlaceList;
     TextView txtLang, txtLong;
     EditText edtPlaceName_;
@@ -96,9 +100,20 @@ public class SelectPlace extends AppCompatActivity {
             boylam = String.valueOf(lon);
             //  txtLang.setText(String.valueOf(lat));
             //   txtLong.setText(String.valueOf(lon));
-            searchPlaces("", enlem, boylam);
-            getCityName(40.9964840143779, 29.509277343750004);
+            //  searchPlaces("", enlem, boylam);
+            // getCityName(40.9964840143779, 29.509277343750004);
         }
+        lstPlaceList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intentSelectImage = new Intent(getApplicationContext(), SaveCommentImage.class);
+                intentSelectImage.putExtra("placeName", placeList.get(position));
+                System.out.println("adadad : " + placeListObj);
+                place = placeListObj.get(position);
+                intentSelectImage.putExtra("place", placeListObj.get(position));
+                startActivity(intentSelectImage);
+            }
+        });
 
         edtPlaceName_.addTextChangedListener(new TextWatcher() {
             @Override
@@ -117,14 +132,7 @@ public class SelectPlace extends AppCompatActivity {
             }
         });
 
-        lstPlaceList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intentSelectImage = new Intent(getApplicationContext(), SaveCommentImage.class);
-                intentSelectImage.putExtra("placeName",placeList.get(position));
-                startActivity(intentSelectImage);
-            }
-        });
+
 
 
 
@@ -143,10 +151,7 @@ public class SelectPlace extends AppCompatActivity {
         GetPlacesData getPlacesData = new GetPlacesData();
         try {
             getPlacesData.execute(url);
-            getPlacesData.onPostExecute(placesJSON);
-            placesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, android.R.id.text1, placeList);
-            lstPlaceList.setAdapter(placesAdapter);
-            lstPlaceList.refreshDrawableState();
+
 
         } catch (Exception e) {
 
@@ -201,20 +206,43 @@ public class SelectPlace extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             placeList = new ArrayList<>();
+            placeListObj = new ArrayList<>();
             //System.out.println("Data :" + s);
             try {
                 JSONObject jsonObject = new JSONObject(s);
                 jsonObject = jsonObject.getJSONObject("response");
                 System.out.println("sasa" + jsonObject.toString());
                 JSONArray jsonArray = jsonObject.getJSONArray("venues");
+                JSONObject jsonLocation;
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                     placeList.add(jsonObject1.getString("name"));
+                    jsonLocation = new JSONObject(jsonObject1.getString("location"));
+                    String _city;
+                    String _address;
+                    try {
+                        _address = jsonLocation.getString("address");
+                    }catch (Exception e){
+                        _address = "";
+                    }
+                    try {
+                        _city = jsonLocation.getString("city");
+                    }catch (Exception e){
+                        _city = "";
+                    }
+                 place = new Place(jsonObject1.getString("id"),jsonObject1.getString("name"), _address, jsonLocation.getString("lat"), jsonLocation.getString("lng"),_city,jsonLocation.getString("state"),jsonLocation.getString("formattedAddress"));
+
+                   placeListObj.add(place);
+
                 }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             super.onPostExecute(s);
+            placesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_dropdown_item_1line, android.R.id.text1, placeList);
+            lstPlaceList.setAdapter(placesAdapter);
+            lstPlaceList.refreshDrawableState();
         }
     }
 

@@ -50,7 +50,7 @@
         </activity>
         <activity android:name="com.example.selimelik.imagelist.SaveCommentImage" />
         <activity android:name="com.example.selimelik.imagelist.SelectPlace" />
-        <activity android:name="com.example.selimelik.imagelist.ImageListActivity" />
+        <activity android:name="com.example.selimelik.imagelist.ContainerActivity" />
         <activity android:name="com.example.selimelik.imagelist.SignUpActivity" />
         <activity
             android:name="com.google.firebase.auth.internal.FederatedSignInActivity"

@@ -63,10 +63,10 @@ public class MainPageFragment extends Fragment {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // System.out.println("FBV Children :" +dataSnapshot.getChildren());
-                //  System.out.println("FBV key :" +dataSnapshot.getKey());
-                //   System.out.println("FBV value :" +dataSnapshot.getValue());
-                //   System.out.println("FBV priority :" +dataSnapshot.getPriority());
+                 System.out.println("FBV Children :" +dataSnapshot.getChildren());
+                  System.out.println("FBV key :" +dataSnapshot.getKey());
+                   System.out.println("FBV value :" +dataSnapshot.getValue());
+                   System.out.println("FBV priority :" +dataSnapshot.getPriority());
 
                 for (DataSnapshot ds : dataSnapshot.getChildren()){
                     Post post = ds.getValue(Post.class);

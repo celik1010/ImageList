@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.selimelik.imagelist.pojos.Place;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,7 +39,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class SaveCommentImage extends AppCompatActivity {
-
+    Place place;
     String mUsernameEmail;
     String mUsername;
     Uri selectedImageUri;
@@ -67,7 +68,10 @@ public class SaveCommentImage extends AppCompatActivity {
         placeNameTxt = findViewById(R.id.txtPlaceName);
         imageView = findViewById(R.id.imageView);
         imageViewCamera = findViewById(R.id.imageViewCamera);
-        placeNameTxt.setText(getIntent().getExtras().getString("placeName"));
+        place = (Place) getIntent().getSerializableExtra("place");
+        //placeNameTxt.setText(getIntent().getExtras().getString("placeName"));
+        placeNameTxt.setText(place.getPlace_name());
+
 
 
 
@@ -107,7 +111,7 @@ public class SaveCommentImage extends AppCompatActivity {
     public void uploadImage(View view) {
         final UUID uuid = UUID.randomUUID();
         final String imagename = "selimcelik@yandex.com" + uuid + ".jpg";
-
+        final String place_name = placeNameTxt.getText().toString();
 
         StorageReference storageReference = mStorageRef.child("images/" + imagename);
         if (selectedImageUri == null) {
@@ -126,13 +130,24 @@ public class SaveCommentImage extends AppCompatActivity {
                             SimpleDateFormat date_format = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
                             String current_time = date_format.format(date);
                             String uuidString = uuid.toString();
+                            place = (Place) getIntent().getSerializableExtra("place");
                             long timestamp = -1 * date.getTime();
                             myRef = firebaseDatabase.getReference();
                             myRef.child(ContainerActivity.POSTSTABLENAME).child(uuidString).child("place_id").setValue(place_id);
                             myRef.child("POSTS").child(uuidString).child("username").setValue(mUsername);
+                            myRef.child("POSTS").child(uuidString).child("place_name").setValue(place_name);
                             myRef.child("POSTS").child(uuidString).child("image_path").setValue(image_path);
                             myRef.child("POSTS").child(uuidString).child("postdate").setValue(current_time);
                             myRef.child("POSTS").child(uuidString).child("timestamp").setValue(timestamp);
+
+
+                            myRef.child("PLACES").child(place.getPlace_id().toString()).child("place_name").setValue(place.getPlace_name().toString());
+                            myRef.child("PLACES").child(place.getPlace_id().toString()).child("place_address").setValue(place.getPlace_address().toString());
+                            myRef.child("PLACES").child(place.getPlace_id().toString()).child("place_lat").setValue(place.getPlace_lat().toString());
+                            myRef.child("PLACES").child(place.getPlace_id().toString()).child("place_lng").setValue(place.getPlace_lng().toString());
+                            myRef.child("PLACES").child(place.getPlace_id().toString()).child("place_city").setValue(place.getPlace_city().toString());
+                            myRef.child("PLACES").child(place.getPlace_id().toString()).child("place_state").setValue(place.getPlace_state().toString());
+                            myRef.child("PLACES").child(place.getPlace_id().toString()).child("place_formattedaddress").setValue(place.getPlace_formattedAddress().toString());
 
                             Intent intent = new Intent(getApplicationContext(), ContainerActivity.class);
                             startActivity(intent);
@@ -165,6 +180,8 @@ public class SaveCommentImage extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), "URI : " + uri.toString(), Toast.LENGTH_LONG).show();
                                     String place_id = uuid.toString();
                                     String image_path = uri.toString();
+                                    place = (Place) getIntent().getSerializableExtra("place");
+
                                     Date date = new Date();
                                     SimpleDateFormat date_format = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
                                     String current_time = date_format.format(date);
@@ -173,9 +190,17 @@ public class SaveCommentImage extends AppCompatActivity {
                                     myRef = firebaseDatabase.getReference();
                                     myRef.child(ContainerActivity.POSTSTABLENAME).child(uuidString).child("place_id").setValue(place_id);
                                     myRef.child("POSTS").child(uuidString).child("username").setValue(mUsername);
+                                    myRef.child("POSTS").child(uuidString).child("place_name").setValue(place_name);
                                     myRef.child("POSTS").child(uuidString).child("image_path").setValue(image_path);
                                     myRef.child("POSTS").child(uuidString).child("postdate").setValue(current_time);
                                     myRef.child("POSTS").child(uuidString).child("timestamp").setValue(timestamp);
+                                    myRef.child("PLACES").child(place.getPlace_id().toString()).child("place_name").setValue(place.getPlace_name().toString());
+                                    myRef.child("PLACES").child(place.getPlace_id().toString()).child("place_address").setValue(place.getPlace_address().toString());
+                                    myRef.child("PLACES").child(place.getPlace_id().toString()).child("place_lat").setValue(place.getPlace_lat().toString());
+                                    myRef.child("PLACES").child(place.getPlace_id().toString()).child("place_lng").setValue(place.getPlace_lng().toString());
+                                    myRef.child("PLACES").child(place.getPlace_id().toString()).child("place_city").setValue(place.getPlace_city().toString());
+                                    myRef.child("PLACES").child(place.getPlace_id().toString()).child("place_state").setValue(place.getPlace_state().toString());
+                                    myRef.child("PLACES").child(place.getPlace_id().toString()).child("place_formattedaddress").setValue(place.getPlace_formattedAddress().toString());
 
                                     Intent intent = new Intent(getApplicationContext(), ContainerActivity.class);
                                     startActivity(intent);
