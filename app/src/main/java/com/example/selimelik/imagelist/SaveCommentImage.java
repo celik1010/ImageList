@@ -135,6 +135,7 @@ public class SaveCommentImage extends AppCompatActivity {
                             myRef = firebaseDatabase.getReference();
                             myRef.child(ContainerActivity.POSTSTABLENAME).child(uuidString).child("place_id").setValue(place_id);
                             myRef.child("POSTS").child(uuidString).child("username").setValue(mUsername);
+                            myRef.child("POSTS").child(uuidString).child("place_id").setValue(place.getPlace_id().toString());
                             myRef.child("POSTS").child(uuidString).child("place_name").setValue(place_name);
                             myRef.child("POSTS").child(uuidString).child("image_path").setValue(image_path);
                             myRef.child("POSTS").child(uuidString).child("postdate").setValue(current_time);

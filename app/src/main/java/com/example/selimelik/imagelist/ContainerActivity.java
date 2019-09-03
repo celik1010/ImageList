@@ -5,14 +5,17 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.selimelik.imagelist.fragments.PlacesFragment;
 import com.example.selimelik.imagelist.fragments.SearchPageFragment;
+import com.example.selimelik.imagelist.interfaces.SearchPageCommunicator;
 
-public class ContainerActivity extends AppCompatActivity{
+public class ContainerActivity extends AppCompatActivity {
     private static ContainerActivity containerActivity;
     public static final String POSTSTABLENAME = "POSTS";
     public static final String LIKESTABLENAME = "LIKES";

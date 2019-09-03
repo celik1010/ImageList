@@ -7,7 +7,7 @@
     tools:context=".SelectPlace">
 
     <EditText
-        android:id="@+id/edtSearchText"
+        android:id="@+id/edtSearchText1"
         android:layout_width="0dp"
         android:layout_height="62dp"
         android:layout_marginTop="4dp"
@@ -28,6 +28,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtSearchText" />
+        app:layout_constraintTop_toBottomOf="@+id/edtSearchText1" />
 
 </android.support.constraint.ConstraintLayout>

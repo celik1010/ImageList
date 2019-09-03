@@ -29,9 +29,9 @@ MERGED from [com.google.android.gms:play-services-ads-identifier:15.0.1] C:\User
 MERGED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\c7663a4762db411103e6ff3c3eaa4a74\AndroidManifest.xml:17:1-28:12
 MERGED from [com.android.support:support-v4:28.0.0] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\support-v4-28.0.0.aar\cad57dfa72d42e56df4aaa5c17f70839\AndroidManifest.xml:17:1-22:12
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\picasso-2.71828.aar\57037f65f9e8b7e58adf963c1efde217\AndroidManifest.xml:2:1-14:12
+MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\41ff042a7208ffd58e767d5d22db3fab\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\f0a1d507e8411e79ca878eff915773f0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\41f2164b3c14bf437e0ac8560e592f98\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\41ff042a7208ffd58e767d5d22db3fab\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\c9e3ad7d0c65899538f21c2f85c32ba6\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\231a8cff0caa08409472e5f283f305ff\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-28.0.0.aar\fa1ddcf33fae06c0c28622a46a182bcc\AndroidManifest.xml:17:1-22:12
@@ -251,12 +251,12 @@ MERGED from [com.android.support:support-v4:28.0.0] C:\Users\Selim Çelik\.gradle
 MERGED from [com.android.support:support-v4:28.0.0] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\support-v4-28.0.0.aar\cad57dfa72d42e56df4aaa5c17f70839\AndroidManifest.xml:20:5-44
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\picasso-2.71828.aar\57037f65f9e8b7e58adf963c1efde217\AndroidManifest.xml:5:5-44
 MERGED from [com.squareup.picasso:picasso:2.71828] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\picasso-2.71828.aar\57037f65f9e8b7e58adf963c1efde217\AndroidManifest.xml:5:5-44
+MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\41ff042a7208ffd58e767d5d22db3fab\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\41ff042a7208ffd58e767d5d22db3fab\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\f0a1d507e8411e79ca878eff915773f0\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\f0a1d507e8411e79ca878eff915773f0\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\41f2164b3c14bf437e0ac8560e592f98\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\41f2164b3c14bf437e0ac8560e592f98\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\41ff042a7208ffd58e767d5d22db3fab\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-28.0.0.aar\41ff042a7208ffd58e767d5d22db3fab\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\c9e3ad7d0c65899538f21c2f85c32ba6\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\c9e3ad7d0c65899538f21c2f85c32ba6\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\Selim Çelik\.gradle\caches\transforms-1\files-1.1\support-core-utils-28.0.0.aar\231a8cff0caa08409472e5f283f305ff\AndroidManifest.xml:20:5-44

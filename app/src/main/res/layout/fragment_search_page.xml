@@ -8,7 +8,7 @@
     <!-- TODO: Update blank fragment layout -->
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editSearchText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"

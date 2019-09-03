@@ -1136,6 +1136,7 @@ id contentPanel
 id coordinator
 id custom
 id customPanel
+id customlinear
 id dark
 id decor_content_parent
 id default_activity_button
@@ -1147,9 +1148,9 @@ id design_navigation_view
 id dimensions
 id direct
 id disableHome
-id editText
+id editSearchText
 id edit_query
-id edtSearchText
+id edtSearchText1
 id email
 id email_login_form
 id email_sign_in_button
@@ -1188,11 +1189,13 @@ id italic
 id item_touch_helper_previous_elevation
 id labeled
 id largeLabel
+id layout_places
 id left
 id light
 id line1
 id line3
 id listMode
+id listPlaces
 id listView
 id list_item
 id login_form
@@ -1233,6 +1236,7 @@ id pin
 id progress_circular
 id progress_horizontal
 id radio
+id recyclerPlaceList
 id register
 id right
 id right_icon
@@ -1258,6 +1262,7 @@ id search_src_text
 id search_voice_btn
 id select_dialog_listview
 id selected
+id selimcelik
 id shortcut
 id showCustom
 id showHome
@@ -1290,6 +1295,8 @@ id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
+id textView1
+id textView2
 id text_input_password_toggle
 id textinput_counter
 id textinput_error
@@ -1375,7 +1382,9 @@ layout activity_image_list
 layout activity_main
 layout activity_save_comment_image
 layout activity_select_place
+layout activity_select_place1
 layout activity_sign_up
+layout custom_place_item
 layout custom_view
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog

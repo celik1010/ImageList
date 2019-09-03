@@ -15,6 +15,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -24,7 +26,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.selimelik.imagelist.adapters.PlaceListAdapter;
+import com.example.selimelik.imagelist.interfaces.PlaceApiInterface;
 import com.example.selimelik.imagelist.pojos.Place;
+import com.example.selimelik.imagelist.pojos.place.PlaceResponse;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,18 +43,25 @@ import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class SelectPlace extends AppCompatActivity {
     ArrayAdapter<String> placesAdapter;
     String enlem, boylam;
     String placesJSON;
     List<String> placeList;
     List<Place> placeListObj;
+    RecyclerView recyclerView;
     Place place;
     ListView lstPlaceList;
     TextView txtLang, txtLong;
     EditText edtPlaceName_;
     LocationManager locationManager;
     LocationListener locationListener;
+    Call<com.example.selimelik.imagelist.pojos.place.Place> call;
+    PlaceResponse placeResponseList;
 
     private final String FSQ_CLIENT_ID = "C2L4DPI1JXR2VBRCN4FXZUO5XODUXFELK50VCNHNZ52Z0EJH";
     private final String FSQ_CLIENT_SECRET = "SLROW2EOR44ZFDR3Z4N4O5NLA5LQJY2BPVWOVJDBTTWT43PR";
@@ -58,12 +70,21 @@ public class SelectPlace extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_place);
+        setContentView(R.layout.activity_select_place1);
+
+        /***********************************************************/
+        recyclerView = findViewById(R.id.recyclerPlaceList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        final PlaceApiInterface apiInterface = PlaceApiClient.getRetrofitInstance().create(PlaceApiInterface.class);
+
+        /***********************************************************/
+
 
         //   txtLong = findViewById(R.id.txtlongitude);
         //   txtLang = findViewById(R.id.txtlatitude);
-        edtPlaceName_ = findViewById(R.id.edtSearchText);
-        lstPlaceList = findViewById(R.id.lstPlaces);
+        edtPlaceName_ = findViewById(R.id.edtSearchText1);
+      //  lstPlaceList = findViewById(R.id.lstPlaces);
 
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
@@ -103,7 +124,7 @@ public class SelectPlace extends AppCompatActivity {
             //  searchPlaces("", enlem, boylam);
             // getCityName(40.9964840143779, 29.509277343750004);
         }
-        lstPlaceList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      /*  lstPlaceList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intentSelectImage = new Intent(getApplicationContext(), SaveCommentImage.class);
@@ -113,7 +134,7 @@ public class SelectPlace extends AppCompatActivity {
                 intentSelectImage.putExtra("place", placeListObj.get(position));
                 startActivity(intentSelectImage);
             }
-        });
+        });*/
 
         edtPlaceName_.addTextChangedListener(new TextWatcher() {
             @Override
@@ -123,7 +144,24 @@ public class SelectPlace extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                searchPlaces(s.toString(), enlem, boylam);
+
+                call = apiInterface.getPlacesRetrofit(s.toString(),enlem+","+boylam,8);
+
+                call.enqueue(new Callback<com.example.selimelik.imagelist.pojos.place.Place>() {
+                    @Override
+                    public void onResponse(Call<com.example.selimelik.imagelist.pojos.place.Place> call, Response<com.example.selimelik.imagelist.pojos.place.Place> response) {
+                        placeResponseList = response.body().getPlaceResponse();
+                        System.out.println("asasa : " + placeResponseList.getVenues().get(0).getLocation().getFormattedAddress());
+                        recyclerView.setAdapter(new PlaceListAdapter(placeResponseList,R.layout.custom_place_item,getApplicationContext()));
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<com.example.selimelik.imagelist.pojos.place.Place> call, Throwable t) {
+
+                    }
+                });
+                //  searchPlaces(s.toString(), enlem, boylam);
             }
 
             @Override
@@ -230,7 +268,7 @@ public class SelectPlace extends AppCompatActivity {
                     }catch (Exception e){
                         _city = "";
                     }
-                 place = new Place(jsonObject1.getString("id"),jsonObject1.getString("name"), _address, jsonLocation.getString("lat"), jsonLocation.getString("lng"),_city,jsonLocation.getString("state"),jsonLocation.getString("formattedAddress"));
+                   place = new Place(jsonObject1.getString("id"),jsonObject1.getString("name"), _address, jsonLocation.getString("lat"), jsonLocation.getString("lng"),_city,jsonLocation.getString("state"),jsonLocation.getString("formattedAddress"));
 
                    placeListObj.add(place);
 
